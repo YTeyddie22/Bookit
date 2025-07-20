@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 /* PAGES */
 
-import AppLayout from "./pages/AppLayout";
 import GlobalStyles from "./styles/GlobalStyles";
 import Accounts from "./pages/Accounts";
 import Dashboard from "./pages/Dashboard";
@@ -12,6 +11,11 @@ import Cabins from "./pages/Cabin";
 import Users from "./pages/Users";
 import Settings from "./pages/Settings";
 import PageNotFound from "./pages/PageNotFound";
+import Login from "./pages/Login";
+
+/* UI */
+
+import AppLayout from "./ui/AppLayout";
 
 function App() {
 	return (
