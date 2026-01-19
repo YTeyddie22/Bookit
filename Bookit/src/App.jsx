@@ -23,32 +23,30 @@ const queryClient = new QueryClient({});
 
 function App() {
 	return (
-		<>
-			<QueryClientProvider client={queryClient}>
-				<ReactQueryDevtools initialIsIpen={false} />
-				<GlobalStyles />
-				<BrowserRouter>
-					<Routes>
-						<Route element={<AppLayout />}>
-							<Route
-								index
-								element={<Navigate replace to="dashboard" />}
-							/>
-							<Route path="dashboard" element={<Dashboard />} />
-							<Route path="bookings" element={<Bookings />} />
-							<Route path="cabins" element={<Cabins />} />
-							<Route path="users" element={<Users />} />
-							<Route path="settings" element={<Settings />} />
-							<Route path="account" element={<Accounts />} />
-							<Route path="*" element={<PageNotFound />} />
-						</Route>
-
-						<Route path="login" element={<Login />} />
+		<QueryClientProvider client={queryClient}>
+			<ReactQueryDevtools initialIsIpen={false} />
+			<GlobalStyles />
+			<BrowserRouter>
+				<Routes>
+					<Route element={<AppLayout />}>
+						<Route
+							index
+							element={<Navigate replace to="dashboard" />}
+						/>
+						<Route path="dashboard" element={<Dashboard />} />
+						<Route path="bookings" element={<Bookings />} />
+						<Route path="cabins" element={<Cabins />} />
+						<Route path="users" element={<Users />} />
+						<Route path="settings" element={<Settings />} />
+						<Route path="account" element={<Accounts />} />
 						<Route path="*" element={<PageNotFound />} />
-					</Routes>
-				</BrowserRouter>
-			</QueryClientProvider>
-		</>
+					</Route>
+
+					<Route path="login" element={<Login />} />
+					<Route path="*" element={<PageNotFound />} />
+				</Routes>
+			</BrowserRouter>
+		</QueryClientProvider>
 	);
 }
 
