@@ -23,7 +23,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
   const { register, handleSubmit, reset, formState, getValues } = useForm();
 
   const { errors } = formState;
-  console.log(errors);
+
   const { mutate, isLoading: isCreating } = useMutation({
     mutationFn: createCabin,
     onSuccess: () => {
@@ -40,7 +40,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
   });
 
   function submit(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
   return (
     <Form type="modal" onSubmit={handleSubmit(submit)}>
@@ -52,6 +52,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Input
           type="text"
           id="name"
+          disabled={isCreating}
           {...register("name", {
             required: "This field is required",
           })}
@@ -62,6 +63,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Input
           type="number"
           id="maxCapacity"
+          disabled={isCreating}
           {...register("maxCapacity", {
             required: "This field is required",
             min: {
@@ -76,6 +78,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Input
           type="number"
           id="regularPrice"
+          disabled={isCreating}
           {...register("regularPrice", {
             required: "This field is required",
             min: {
@@ -90,6 +93,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Input
           type="number"
           id="discount"
+          disabled={isCreating}
           defaultValue={0}
           {...register("discount", {
             required: "Cannot be empty, at least 0",
@@ -107,6 +111,7 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
         <Textarea
           type="number"
           id="description"
+          disabled={isCreating}
           defaultValue=""
           {...register("description", {
             required: "This field is required",
@@ -115,7 +120,12 @@ function CreateCabinForm({ cabinToEdit, closeModal }) {
       </FormRow>
 
       <FormRow label="Cabin photo">
-        <FileInput id="image" accept="image/*" />
+        <FileInput
+          id="image"
+          accept="image/*"
+          {...register("image")}
+          disabled={isCreating}
+        />
       </FormRow>
 
       <FormRow>
